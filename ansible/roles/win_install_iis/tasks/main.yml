@@ -1,0 +1,11 @@
+- name: Include install_iis.yml
+  include: install_iis.yml
+  tags:
+    - iis
+    - config
+
+- name: Include dotnet46.yml
+  include: dotnet46.yml
+  tags:
+    - dotnet46
+    - config

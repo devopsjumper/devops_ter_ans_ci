@@ -1,0 +1,3 @@
+#group_vars
+
+ntp_server: 173.44.32.10

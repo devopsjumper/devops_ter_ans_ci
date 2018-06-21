@@ -1,0 +1,5 @@
+- name: Include firewall.yml
+  include: firewall.yml
+  tags:
+    - winfirewall
+    - config

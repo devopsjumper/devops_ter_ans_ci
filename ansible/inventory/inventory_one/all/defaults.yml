@@ -1,0 +1,4 @@
+#Global vars_files
+
+#aws ntp server
+ntp_server: 172.1.1.9

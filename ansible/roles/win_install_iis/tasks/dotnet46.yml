@@ -1,0 +1,5 @@
+- name: Install NET-Framework-46 from file
+  win_feature:
+    name: NET-Framework-46
+    source: C:\latestdotnet46
+    state: present

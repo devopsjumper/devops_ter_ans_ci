@@ -1,0 +1,40 @@
+#Install latest IIS
+- name: Install IIS
+  hosts: windows
+  gather_facts: true
+  tasks:
+   - win_feature:
+       name: "windows"
+       state: present
+       restart: yes
+       include_sub_features: yes
+       include_management_tools: yes
+
+- name: Start Web Mgmt Service
+  win_service:
+    name: WMSVC
+    state: started
+
+- name: Create log iis log directory
+    win_file:
+    path: {{ default_iis_path }}
+    state:  present
+    register: win_iis_folder_create
+
+- name: Create check file
+  win_file:
+    path: c:\iis\iis_logs
+    state: touch
+    when: win_iis_folder_create.stat.exists == true
+
+- name: customer IIS site
+  win_iis_website:
+    name: "Acme"
+    state: started
+    port: 80
+    ip: 0.0.0.0
+    hostname: domain.local
+    application_pool: "siteone"
+    physical_path: c:\iis\sites\website
+    parameters: logfile.directory:{{ default_iis_path }}
+  register: website_customer_a

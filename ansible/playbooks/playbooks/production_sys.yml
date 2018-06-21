@@ -1,0 +1,7 @@
+vars_files:
+  - "../../inventory/digital_zone_customer/defaults.yml"
+roles:
+  - win_install_iis
+  - win_mssql2016
+  - win_os_security
+  - win_hostfile

@@ -1,0 +1,12 @@
+  win_get_url:
+    url: 'https://go.microsoft.com/fwlink/?linkid=853016'
+    dest: '{{ temp_instal_dir }}\mssql2016.exe'
+    register: msbuild
+
+- name: Install MS SQL 2016
+  raw: '{{ temp_instal_dir }}\mssql2016.exe /Quiet /NoRestart /Full'
+  when: msbuild.stat.exists == true
+
+
+  # <configuration here>
+  # likly powershell script which would be based in files folder
